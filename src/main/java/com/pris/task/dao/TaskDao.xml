@@ -10,4 +10,31 @@
 	<select id="findOne" resultMap="TaskResult">
 		SELECT * FROM TASK LIMIT 1
 	</select>
+	<select id="findAllTasks" resultMap="TaskResult">
+		SELECT * FROM TASK
+	</select>
+	<select id="find" resultMap="TaskResult">
+		SELECT * FROM TASK WHERE ID=#{id}
+	</select>
+	<select id="findById" resultMap="TaskResult">
+		SELECT * FROM TASK WHERE ID=#{id}
+	</select>
+	<insert id="add">
+		INSERT INTO TASK(ID,NAME,WEIGHT,STATE) VALUES(#{id},#{name},#{weight},#{state})
+	</insert>
+	<update id="update">
+		UPDATE TASK 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name!=null">NAME=#{name},</if>
+			<if test="weight!=null">WEIGHT=#{weight},</if>
+			<if test="state!=null">STATE=#{state},</if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+	<delete id="delete">
+		DELETE FROM TASK WHERE ID=#{id}
+	</delete>
+	<delete id="deleteById">
+		DELETE FROM TASK WHERE ID=#{id}
+	</delete>
 </mapper>

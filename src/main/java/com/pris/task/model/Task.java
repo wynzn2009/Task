@@ -4,14 +4,12 @@
 package com.pris.task.model;
 
 import org.apache.ibatis.type.Alias;
-import org.springframework.stereotype.Component;
 
 /**
  * @author LO
  *
  */
 @Alias("Task")
-@Component
 public class Task {
 	private String id;
 	private String name;

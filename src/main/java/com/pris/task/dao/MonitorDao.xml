@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pris.task.dao.MonitorDao">
+	<resultMap type="com.pris.task.model.Monitor" id="MonitorResult">
+		<result column="consumer" property="consumer" />
+		<result column="code" property="code" />
+		<result column="version" property="version" />
+		<result column="district" property="district" />
+		<result column="channel" property="channel" />
+		<result column="end" property="end" />
+		<result column="count" property="count" />
+	</resultMap>
+	<!-- <select id="findOne" resultMap="TaskResult"> SELECT * FROM TASK LIMIT 
+		1 </select> <select id="findAllTasks" resultMap="TaskResult"> SELECT * FROM 
+		TASK </select> <select id="find" resultMap="TaskResult"> SELECT * FROM TASK 
+		WHERE ID=#{id} </select> <select id="findById" resultMap="TaskResult"> SELECT 
+		* FROM TASK WHERE ID=#{id} </select> <insert id="add"> INSERT INTO TASK(ID,NAME,WEIGHT,STATE) 
+		VALUES(#{id},#{name},#{weight},#{state}) </insert> <update id="update"> UPDATE 
+		TASK <trim prefix="set" suffixOverrides=","> <if test="name!=null">NAME=#{name},</if> 
+		<if test="weight!=null">WEIGHT=#{weight},</if> <if test="state!=null">STATE=#{state},</if> 
+		</trim> WHERE ID=#{id} </update> <delete id="delete"> DELETE FROM TASK WHERE 
+		ID=#{id} </delete> <delete id="deleteById"> DELETE FROM TASK WHERE ID=#{id} 
+		</delete> -->
+	<insert id="add"> INSERT INTO MONITOR(DISTRICT,CHANNEL,END,CODE,VERSION,CONSUMER,COUNT) 
+		VALUES(#{district},#{channel},#{end},#{code},#{version},#{consumer},#{count}) 
+	</insert>
+	<select id="findById" resultMap="MonitorResult">
+		SELECT
+		consumer,code,version,district,channel,end,count FROM MONITOR WHERE
+		DISTRICT=#{district} AND CHANNEL=#{channel} AND END &lt; #{end} AND
+		END &gt; #{start} AND
+		CODE=#{code} AND VERSION=#{version} AND
+		CONSUMER=#{consumer}
+	</select>
+</mapper>

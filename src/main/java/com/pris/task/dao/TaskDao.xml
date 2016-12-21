@@ -6,6 +6,7 @@
 		<result column="name" property="name"/>
 		<result column="weight" property="weight"/>
 		<result column="state" property="state"/>
+		<result column="count" property="count"/>
 	</resultMap>
 	<select id="findOne" resultMap="TaskResult">
 		SELECT * FROM TASK LIMIT 1
@@ -28,8 +29,17 @@
 			<if test="name!=null">NAME=#{name},</if>
 			<if test="weight!=null">WEIGHT=#{weight},</if>
 			<if test="state!=null">STATE=#{state},</if>
+			<if test="count!=null">COUNT=#{count},</if>
 		</trim>
 		WHERE ID=#{id}
+	</update>
+	<update id="updateTaskWeight">
+		<foreach collection="list" item="task" separator=";">
+			UPDATE TASK SET WEIGHT = #{task.weight} WHERE ID=#{task.id}
+		</foreach>
+	</update>
+	<update id="addCount">
+		UPDATE TASK SET COUNT = COUNT+1	WHERE ID=#{id}
 	</update>
 	<delete id="delete">
 		DELETE FROM TASK WHERE ID=#{id}

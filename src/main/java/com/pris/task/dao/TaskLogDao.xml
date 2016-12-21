@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pris.task.dao.TaskLogDao">
+	<resultMap type="com.pris.task.model.TaskLog" id="TaskLogResult">
+		<id column="id" property="id" />
+		<result column="task_id" property="taskId" />
+		<result column="task_name" property="taskName" />
+		<result column="date" property="date" />
+		<result column="mode" property="mode" />
+		<result column="state" property="state" />
+	</resultMap>
+	<insert id="addInfo">
+		INSERT INTO
+		TASK_LOG(TASK_ID,TASK_NAME,DATE,MODE,STATE)
+		VALUES(#{taskId},#{taskName},now(),#{mode},#{state})
+	</insert>
+</mapper>

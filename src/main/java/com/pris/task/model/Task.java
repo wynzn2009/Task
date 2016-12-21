@@ -15,6 +15,7 @@ public class Task {
 	private String name;
 	private int weight;
 	private int state;
+	private int count;
 
 	public String getId() {
 		return id;
@@ -48,6 +49,20 @@ public class Task {
 		this.state = state;
 	}
 
+	/**
+	 * @return the count
+	 */
+	public int getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -55,8 +70,9 @@ public class Task {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Task [id=").append(id).append(", name=").append(name).append(", weight=").append(weight)
-				.append(", state=").append(state).append("]");
+				.append(", state=").append(state).append(", count=").append(count).append("]");
 		return builder.toString();
 	}
+
 
 }

@@ -18,6 +18,8 @@ public interface TaskDao {
 	public void add(Task task);
 
 	public void update(Task task);
+	
+	public void updateTaskWeight(List<Task> list);
 
 	public void delete(Task task);
 
@@ -30,4 +32,6 @@ public interface TaskDao {
 	public Task findOne();
 	
 	public List<Task> findAllTasks();
+	
+	public void addCount(String id);
 }

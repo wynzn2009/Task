@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pris.handler.WeightHandler;
 import com.pris.task.dao.TaskDao;
 import com.pris.task.model.Task;
 import com.pris.task.service.TaskService;
@@ -15,7 +16,8 @@ import com.pris.task.service.TaskService;
 public class TaskServiceImpl implements TaskService {
 	@Autowired
 	private TaskDao dao;
-
+	@Autowired
+	private WeightHandler w;
 	@Override
 	public Task pickOne() {
 		List<Task> list = dao.findAllTasks();
@@ -45,5 +47,12 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public List<Task> findAll() {
 		return dao.findAllTasks();
+	}
+
+	@Override
+	public Task pickInWeight() {
+		Task t = w.findInWeight();
+		System.out.println(t);
+		return t;
 	}
 }

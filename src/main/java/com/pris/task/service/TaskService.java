@@ -21,4 +21,6 @@ public interface TaskService {
 	void addCount(String id);
 	
 	void updateTaskWeight(List<Task> list);
+	
+	Task pickInWeight();
 }

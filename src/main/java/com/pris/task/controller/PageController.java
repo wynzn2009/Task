@@ -58,6 +58,7 @@ public class PageController {
 	@RequestMapping("/pick")
 	@ResponseBody
 	public Task pick(){
-		return service.pickOne();
+//		return service.pickOne();
+		return service.pickInWeight();
 	}
 }

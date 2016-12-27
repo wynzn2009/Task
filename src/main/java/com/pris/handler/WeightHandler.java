@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,12 +25,15 @@ public class WeightHandler {
 	private LinkedHashMap<String, Task> taskMap;
 	private LinkedList<Task> taskList;
 	private boolean sorted = false;
+	private int total;
 	@Autowired
 	private TaskService service;
 	public void init(List<Task> list) {
 		this.taskMap = new LinkedHashMap<String, Task>(list.size());
 		this.taskList = new LinkedList<Task>(list);
+		this.total = 0;
 		for (Task t : list) {
+			total += t.getWeight();
 			taskMap.put(t.getId(), t);
 		}
 		this.sortList();
@@ -84,6 +88,19 @@ public class WeightHandler {
 		service.updateTaskWeight(this.taskList);
 	};
 
+	public Task findInWeight(){
+		this.init(service.findAll());
+		Random random = new Random(System.nanoTime());
+		int bean = random.nextInt(total);
+		for(Task t: taskList){
+			if(t.getWeight()>=bean){
+				return t;
+			}else{
+				bean -= t.getWeight();
+			}
+		}
+		return taskList.peekLast();
+	}
 	/**
 	 * @return the taskList
 	 */
@@ -112,6 +129,20 @@ public class WeightHandler {
 	 */
 	public void setSorted(boolean sorted) {
 		this.sorted = sorted;
+	}
+
+	/**
+	 * @return the total
+	 */
+	public int getTotal() {
+		return total;
+	}
+
+	/**
+	 * @param total the total to set
+	 */
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
 }
